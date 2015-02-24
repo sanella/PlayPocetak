@@ -1,0 +1,22 @@
+@(message: String)(taskForm: Form[Task])(tasks: List[Task])
+@import helper._
+@main("Welcome to ToDo") {
+
+   <h1>@message</h1>
+   <div class='panel panel-primary'>
+   <h3> Task: </h3>
+   <ol>
+   		@for(task <- tasks){
+   			<li>@task.name</li>
+   }
+   </ol>
+   </div>
+	
+	@helper.form(action = routes.Application.createTask()) {
+    
+    @helper.inputText(taskForm("name"), '_showConstraints -> false)
+    <input type="submit" value="AddTask" class='btn btn-primary'/>
+    
+}
+
+}
